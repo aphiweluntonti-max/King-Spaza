@@ -29,4 +29,18 @@ ul{
 ul li span{
     font-weight: bold;
 }
+.circle-logo {
+  width: 300px;         /* Set your desired diameter */
+  height: 300px;        /* Must match width */
+  border-radius: 50%;   /* Creates the circular frame */
+  overflow: hidden;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
 
+.circle-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Centers and crops the image to fill the circle */
+}
