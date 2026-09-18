@@ -25,32 +25,41 @@ References:
 MegaVision Media (2022), Impact of Spaza branding on customer value and sales, Available at: https://www.bizcommunity.com/Article/196/12/226403.html Accessible: (28 March 2022)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Improvements from part 1 feedback:
+I fixed my structure of my html pages of the body
 
 
 
-
-
+--------------------------------------------------------------------------------------------------------------------
 Change log:
-
-
-
-
-
-
-
+I fixed my structure of my html pages of the body
+I made my website to be more responsive to other devices such as mobile, tablet, desktop laptop
+I added my logo throughout my html pages
+I added a contact form in contact page 
+-----------------------------------------------------------------------------------------------------------------------------------------
 Instructions:
-
-
-
+Open my link to access my website
+Open my link to my github repository
+-----------------------------------------------------------------------------------------------------------------------------------------
 ##Author:
-
-
-
-
-
+Aphiwe Luntonti
+Student of Rosebank college international
+Age is 18
+------------------------------------------------------------------------------------------------------------------------------------------
 Structure:
-
-
+King-Spaza
+|-->assets
+ |-->There is pictures
+|-->css
+ |-->style.css
+|-->pages
+ |-->about.html
+ |-->availableproducts.html
+ |-->contact.html
+ |-->enquiry.html
+|-->index.html 
+|-->README.md
+------------------------------------------------------------------------------------------------------------------------------------------------
+References:
 
 
 

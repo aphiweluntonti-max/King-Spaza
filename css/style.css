@@ -1,46 +1,260 @@
-h1{
-    text-align: center;
-    color: #a41515;
-    font-size: 50px;
+/* Fixed Google Fonts Import URL */
+@import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Base Styles */
+body {
+  font-family: 'Marvel', sans-serif;
+  margin: 0;
+  padding: 0 1rem;
 }
-p{
-    text-align: center;
-    color: #1f1d1df9;
-    font-size: 20px;
+
+h1 {
+  text-align: center;
+  color: #a41515;
+  font-size: clamp(2rem, 5vw, 3.125rem); /* Dynamically scales font size */
 }
-img{
-    display: block;
-    margin: 0 auto;
-    width: 1280px;
-    height: 720px;
+
+p {
+  text-align: center;
+  color: rgba(31, 29, 29, 0.98);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
-iframe{
-    display: block;
-    margin: 0 auto;
-    width: 1280px;
-    height: 720px;
+
+/* Responsive Images & Videos */
+img, 
+iframe {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Maintains HD aspect ratio on all screens */
 }
-ul{
-    list-style-type: none;
-    text-align: center;
-    color: #1f1d1df9;
-    font-size: 20px;
+
+/* Lists */
+ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  color: rgba(31, 29, 29, 0.98);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
 }
-ul li span{
-    font-weight: bold;
+
+ul li span {
+  font-weight: bold;
 }
+
+/* Responsive Circular Logo Container */
 .circle-logo {
-  width: 300px;         /* Set your desired diameter */
-  height: 300px;        /* Must match width */
-  border-radius: 50%;   /* Creates the circular frame */
+  width: min(300px, 80vw); /* Scales down on screens smaller than 300px */
+  height: min(300px, 80vw);
+  border-radius: 50%;
   overflow: hidden;
+  margin: 0 auto; /* Centered layout */
   display: flex;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
 }
 
 .circle-logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;    /* Centers and crops the image to fill the circle */
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+a.hover-effect {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+/* Responsive Image Styling */
+.hero-image {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  width: min(400px, 90vw); /* Stays 400px on desktop, shrinks to 90% view width on mobile */
+  height: auto;           /* Preserves original aspect ratio without distortion */
+  object-fit: cover;
+  border-radius: 8px;     /* Optional subtle rounded corners */
+}
+/* Header Container - Keeps Everything Left-Aligned */
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Keeps everything on the left */
+  gap: 20px;                   /* Space between logo and nav links */
+  padding: 10px 20px;
+  flex-wrap: wrap;             /* Wraps gracefully on mobile screens */
+}
+
+/* Small Round Logo */
+.logo-img {
+  width: 60px;          /* Logo diameter */
+  height: 60px;         
+  border-radius: 50%;   /* Circle crop */
+  object-fit: cover;    
+  display: block;
+}
+
+/* Navigation Links - Left Aligned */
+/* Navigation Links - Left Aligned and Underlined */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Base Navigation Link Styling */
+.nav-links a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: bold;
+  color: #1f1d1d;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* 1. :hover - Changes color when the user hovers over a link */
+.nav-links a:hover {
+  color: #a41515; /* Changes text color to King Spaza red */
+}
+
+/* 2. :active - Effect when the user clicks down on a link */
+.nav-links a:active {
+  color: #700d0d;
+}
+
+/* 3. :focus - Highlights link for keyboard navigation (Accessibility) */
+.nav-links a:focus {
+  outline: 2px dashed #a41515;
+  outline-offset: 4px;
+}
+
+/* 4. :first-child & :last-child - Styles specific links in the menu */
+.nav-links a:first-child {
+  /* Targets 'HOME' link specifically */
+  font-weight: 900;
+}
+
+.nav-links a:last-child {
+  /* Targets 'CONTACT US' link specifically */
+  color: #a41515;
+}
+
+/* 5. ::after - Adds a small custom separator dot after every link except the last */
+.nav-links a:not(:last-child)::after {
+  content: "•";
+  margin-left: 15px;
+  color: #a41515;
+  display: inline-block;
+  pointer-events: none;
+}
+/* Center the form container */
+form {
+  max-width: 500px;         /* Prevents the form from stretching too wide */
+  width: 90%;               /* Ensures responsiveness on mobile screens */
+  margin: 2rem auto;        /* Centers the form horizontally and adds vertical space */
+  display: flex;
+  flex-direction: column;   /* Stacks inputs neatly */
+  gap: 15px;                /* Adds spacing between labels and fields */
+}
+
+/* Optional styling to make form fields span full width inside the centered box */
+form input,
+form textarea {
+  width: 100%;
+  box-sizing: border-box;  /* Ensures padding doesn't overflow container width */
+}
+
+/* Center the Submit / Cancel buttons container */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+/* Base Form Controls */
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: all 0.3s ease; /* Smooth transition effect */
+}
+
+/* 1. :focus Pseudo-Class - Highlights input fields when clicked */
+form input:focus,
+form textarea:focus {
+  border-color: #a41515;                     /* Accent color border */
+  outline: none;
+  box-shadow: 0 0 5px rgba(164, 21, 21, 0.4); /* Glow effect */
+}
+
+/* 2. ::placeholder Pseudo-Element - Styles the placeholder text */
+form input::placeholder,
+form textarea::placeholder {
+  color: #888888;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* 3. :hover Pseudo-Class - Button interactivity */
+button:hover {
+  background-color: #a41515;
+  color: #ffffff;
+  cursor: pointer;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* 4. :active Pseudo-Class - Button click effect */
+button:active {
+  transform: translateY(0);    /* Button depresses when clicked */
+}
+
+/* 5. :required Pseudo-Class - Adds visual cue to mandatory fields */
+form input:required {
+  border-left: 4px solid #a41515;
+}
+
+/* 6. ::selection Pseudo-Element - Custom highlight color when selecting text */
+form input::selection,
+form textarea::selection {
+  background-color: #a41515;
+  color: #ffffff;
+}
+/* Header Background & Styling */
+header {
+  background-color: #004aad; /* Rich navy/royal blue (or use #0000ff / #1a73e8) */
+  padding: 20px 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Change the main heading inside the header to white for high contrast */
+header h1 {
+  color: #ffffff;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Change navigation link colors and dot separators so they stand out on blue */
+.nav-links a {
+  color: #ffffff;            /* White text for link clarity */
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.nav-links a:hover {
+  color: #ffd700;            /* Optional gold accent color when hovering */
+}
+
+.nav-links a:not(:last-child)::after {
+  color: #ffffff;            /* Makes the separator dots white */
+}
+/* Highlights only the active page with a visible accent color */
+.nav-links a.active {
+  color: #ffd700 !important; /* Bright Gold */
+  font-weight: bold;
 }
