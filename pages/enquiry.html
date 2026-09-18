@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiry</title>
+    <title>Enquiry - King Spaza</title>
     <link rel="icon" href="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png">
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -12,38 +12,72 @@
         <a href="../index.html" class="logo-link">
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
         </a>
-        <nav class="nav-links">
+
+        <!-- Hamburger Button -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Navigation Bar (ID added) -->
+        <nav class="nav-links" id="nav-menu">
             <a href="../index.html">HOME</a>
             <a href="./about.html">ABOUT US</a>
             <a href="./availableproducts.html">AVAILABLE PRODUCTS</a>
-            <a href="./enquiry.html">ENQUIRY</a>
+            <a href="./enquiry.html" class="active">ENQUIRY</a>
             <a href="./contact.html">CONTACT US</a>
         </nav>
     </header>
+
     <main>
         <section>
             <h1>Inquiry form</h1><br><hr>
-        <!--Create a form-->
-        <form style="display: block; margin:auto" action="#" method="post">
-            <label for="name" name="name">Your Name: </label><br/>
-            <input type="text" id="name" placeholder="Tell us who you are" required><br/><br/>
-            <label for="email" name="email"> Email Address: </label><br/>
-            <input type="email" name="email" placeholder="Where we can reply to you" required>
-            <br/><br/>
-                <label for="message" name="message">Message:</label><br/>
-                <textarea name="message" rows="10" cols="40" placeholder="Tell us more about your project" required></textarea> 
-                <button type="submit">
-                    Submit 
-                </button>
-                <button type="cancel">
-                    Cancel
-                </button>
+
+            <form action="#" method="post">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Tell us who you are" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Where we can reply to you" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="10" placeholder="Tell us more about your inquiry" required></textarea> 
+
+                <div class="button-group">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Cancel</button>
+                </div>
             </form>
         </section>
     </main>
+
     <footer>
         <p style="text-align: center;">&copy; 2024 King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
+        <p style="text-align: center;">Follow us on social media: 
+            <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
+            <a href="https://www.instagram.com/kingspaza" target="_blank">Instagram</a> | 
+            <a href="https://twitter.com/kingspaza" target="_blank">Twitter</a>
+        </p>
     </footer>
+
+    <!-- Functional Script with Guard Check -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburgerBtn && navMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>

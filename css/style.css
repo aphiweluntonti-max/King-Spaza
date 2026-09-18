@@ -139,7 +139,7 @@ a.hover-effect {
 
 .nav-links a:last-child {
   /* Targets 'CONTACT US' link specifically */
-  color: #a41515;
+  color: rgb(247, 242, 242);
 }
 
 /* 5. ::after - Adds a small custom separator dot after every link except the last */
@@ -257,4 +257,99 @@ header h1 {
 .nav-links a.active {
   color: #ffd700 !important; /* Bright Gold */
   font-weight: bold;
+}
+/* Base Header Layout */
+/* Header Alignment */
+/* Header & Navigation Bar */
+.header-nav {
+  background-color: #004aad;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Navigation Links (Desktop Default) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #ffd700;
+}
+
+/* Hamburger Icon (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* Mobile Responsive Overlay (Below 768px) */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: flex !important;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #004aad;
+    padding: 15px 0;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-links.active {
+    display: flex !important;
+  }
+
+  .nav-links a {
+    text-align: center;
+    width: 100%;
+    padding: 8px 0;
+  }
 }

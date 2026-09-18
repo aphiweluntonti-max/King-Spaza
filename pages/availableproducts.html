@@ -3,100 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Products</title>
+    <title>Available Products - King Spaza</title>
     <link rel="icon" href="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-     <header class="header-nav">
+    <header class="header-nav">
         <a href="../index.html" class="logo-link">
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
         </a>
-        <nav class="nav-links">
+
+        <!-- Hamburger Button with matching ID -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <nav class="nav-links" id="nav-menu">
             <a href="../index.html">HOME</a>
             <a href="./about.html">ABOUT US</a>
-            <a href="./availableproducts.html">AVAILABLE PRODUCTS</a>
+            <a href="./availableproducts.html" class="active">AVAILABLE PRODUCTS</a>
             <a href="./enquiry.html">ENQUIRY</a>
             <a href="./contact.html">CONTACT US</a>
         </nav>
     </header>
-    <br><hr>
-    <h1>Chips</h1>
-    <section>
-        <p>We have a variety of chips available for you to choose from. Here are some of the popular brands we offer:</p>
-    <ul>
-        <li>Doritos</li>
-        <li>Pringles</li>
-        <li>Cheetos</li>
-        <li>Lay's</li>
-        <li>Ruffles</li>
-        <li>Simba</li>
-        <li>Fritos</li>
-        <li>NikNaks</li>
-        <li>Stylos</li>
-    </ul>
-</section>
-<div style="background-image: url('../assets/Chip_Header_No_Text.webp'); background-size: cover; background-position: center; width: 100%; height: 400px;"></div><hr><br>
-<h1>Drinks</h1>
-<ul>
-    <p > We have a variety of drinks available for you to choose from. Here are some of the popular brands we offer: </p>
-    <li> Coca-Cola</li>
-    <li> Pepsi</li> 
-    <li> Fanta</li>
-    <li> Sprite</li>
-    <li> Refresh</li>
-    <li> Redbull</li>
-</ul><hr><br>
-<style>
-    .drink-header {
-        background-image: url('../assets/92d3c2fe-3939-4e74-b2eb-05cc7658fa7a.webp');
-        background-size: cover;
-        background-position: center;
-        width: 100%;
-        height: 400px;
-    }
-</style>
-<div class="drink-header"></div><hr><br>
-<h1>Other Products</h1>
-<ul>
-    <p>We have a variety of other products available for you to choose from. Here are some of the popular brands we offer:</p>
-    <li> Sunlight</li>
-    <li> Omo</li>
-    <li> Jik</li>
-    <li> Surf</li>
-    <li> Handy Andy</li>
-    <li> Baby Soft</li>
-    <li> Huggies</li>
-    <li> Pampers</li>
-    <li> Colgate</li>
-    <li> Pepsodent</li>
-    <li> Close Up</li>
-    <li> Sensodyne</li>
-    <li> Lux</li>
-    <li> Dove</li>
-    <li> Vaseline</li>
-    <li> Nivea</li>
-    <li> Johnson's Baby Products</li>
-</ul>
-<img src="../assets/laundry-care.webp" alt="Other Products" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"><br><hr>
 
-<h1>Snacks</h1>
-<p>We have a variety of snacks available for you to choose from. Here are some of the popular brands we offer:</p>
-<ul>
-    <li>Kit-Kat</li>
-    <li>Mars</li>
-    <li>Toblerone</li>
-    <li>Galaxy</li>
-    <li>5 Star</li>
-    <li>M&M's</li>
-    <li>Reese's</li>
-    <li>Snickers</li>
-    <li>Twix</li>
-</ul>
-<img src="../assets/Gemini_Generated_Image_swsd2bswsd2bswsd.png" alt="Snacks" style="display: block; margin: 0 auto; max-width: 100%; height: auto;"><br><hr>
-<footer>
+    <main>
+        <!-- Chips Section -->
+        <h1>Chips</h1><hr><br>
+        <section>
+            <p style="text-align: center;">We have a variety of chips available for you to choose from. Here are some of the popular brands we offer:</p>
+            <ul style="list-style-type: none; padding: 0; text-align: center;">
+                <li>Doritos</li>
+                <li>Pringles</li>
+                <li>Cheetos</li>
+                <li>Lay's</li>
+                <li>Ruffles</li>
+                <li>Simba</li>
+                <li>Fritos</li>
+                <li>NikNaks</li>
+                <li>StyLrs</li>
+                <li>Ghost Pops</li>
+            </ul>
+            <img src="../assets/Chip_Header_No_Text.webp" >
+        </section><br><br>
+
+        <!-- Snacks Section -->
+        <h1>Snacks</h1><hr><br>
+        <section>
+            <p style="text-align: center;">Check out our wide range of sweet and savoury snacks:</p>
+            <ul style="list-style-type: none; padding: 0; text-align: center;">
+                <li>Lunch Bar</li>
+                <li>BarOne</li>
+                <li>Tex</li>
+                <li>KitKat</li>
+                <li>Cadbury Dairy Milk</li>
+                <li>Chappies Bubblegum</li>
+                <li>Wilson Toffees</li>
+                <li>Super C</li>
+                <li>Beacon Marshmallows</li>
+                <li>Bakers Blue Label Biscuits</li>
+            </ul>
+            <img src="../assets/Gemini_Generated_Image_swsd2bswsd2bswsd.png" >
+        </section><br><br>
+
+        <!-- Drinks Section -->
+        <h1>Drinks</h1><hr><br>
+        <section>
+            <p style="text-align: center;">Stay refreshed with our selection of cold and hot beverages:</p>
+            <ul style="list-style-type: none; padding: 0; text-align: center;">
+                <li>Coca-Cola</li>
+                <li>Fanta Orange</li>
+                <li>Sprite</li>
+                <li>Stoney Ginger Beer</li>
+                <li>Twizza</li>
+                <li>Mageu Number 1</li>
+                <li>Score Energy Drink</li>
+                <li>Switch Energy Drink</li>
+                <li>Bonaqua Still Water</li>
+                <li>Rooibos Tea Bags</li>
+            </ul>
+            <img src="../assets/92d3c2fe-3939-4e74-b2eb-05cc7658fa7a.webp"
+
+          </section><br>
+
+        <!-- Other Items Section -->
+        <h1>Other Household Essentials</h1><hr><br>
+        <section>
+            <p style="text-align: center;">Everyday essentials and pantry staples available in store:</p>
+            <ul style="list-style-type: none; padding: 0; text-align: center;">
+                <li>White Bread</li>
+                <li>Fresh Milk (2L)</li>
+                <li>White Sugar (1kg)</li>
+                <li>Maize Meal (2.5kg)</li>
+                <li>Sunflower Oil (750ml)</li>
+                <li>Sunlight Laundry Soap</li>
+                <li>Colgate Toothpaste</li>
+                <li>Matches & Candles</li>
+                <li>Airtime Vouchers</li>
+                <li>Prepaid Electricity Top-ups</li>
+            </ul>
+            <img src="../assets/brown-canvas-tote-bag-filled-with-groceries-including-bananas-apples-milk-bread-and-eggs-isolated-on-white-background-free-png.webp"
+  ">
+        </section><br>
+    </main>
+
+    <footer>
         <p style="text-align: center;">&copy; 2024 King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
+        <p style="text-align: center;">Follow us on social media: 
+            <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
+            <a href="https://www.instagram.com/kingspaza" target="_blank">Instagram</a> | 
+            <a href="https://twitter.com/kingspaza" target="_blank">Twitter</a>
+        </p>
     </footer>
+
+    <!-- Safe Script Execution -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburgerBtn && navMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>

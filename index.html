@@ -7,18 +7,27 @@
     <link rel="stylesheet" href="../King-Spaza/css/style.css">
 </head>
 <body> 
-    <header class="header-nav">
-        <a href="../King-Spaza/index.html" class="logo-link">
-            <img class="logo-img" src="../King-Spaza/assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
-        </a>
-        <nav class="nav-links">
-            <a href="../King-Spaza/index.html">HOME</a>
-            <a href="../King-Spaza/pages/about.html">ABOUT US</a>
-            <a href="../King-Spaza/pages/availableproducts.html">AVAILABLE PRODUCTS</a>
-            <a href="../King-Spaza/pages/enquiry.html">ENQUIRY</a>
-            <a href="../King-Spaza/pages/contact.html">CONTACT US</a> 
-        </nav>
-    </header>
+   <header class="header-nav">
+    <a href="../King-Spaza/index.html" class="logo-link">
+        <img class="logo-img" src="../King-Spaza/assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
+    </a>
+
+    <!-- Hamburger Button -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-links" id="nav-menu">
+        <a href="../King-Spaza/index.html">HOME</a>
+        <a href="../King-Spaza/pages/about.html">ABOUT US</a>
+        <a href="../King-Spaza/pages/availableproducts.html">AVAILABLE PRODUCTS</a>
+        <a href="../King-Spaza/pages/enquiry.html">ENQUIRY</a>
+        <a href="../King-Spaza/pages/contact.html">CONTACT US</a>
+    </nav>
+</header>
 
     <main>
         <section>
@@ -34,6 +43,27 @@
     <footer>
         <p style="text-align: center;">&copy; 2024 King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
+        <p style="text-align: center;">Follow us on social media: 
+            <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
+            <a href="https://www.instagram.com/kingspaza" target="_blank">Instagram</a> | 
+            <a href="https://twitter.com/kingspaza" target="_blank">Twitter</a>
+        </p>
     </footer>
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu automatically when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
+</html>
 </html>
