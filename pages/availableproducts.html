@@ -6,6 +6,9 @@
     <title>Available Products - King Spaza</title>
     <link rel="icon" href="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png">
     <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- Lightbox2 CSS for Gallery Popup -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 </head>
 <body>
     <header class="header-nav">
@@ -13,7 +16,7 @@
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
         </a>
 
-        <!-- Hamburger Button with matching ID -->
+        <!-- Hamburger Button -->
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
             <span></span>
             <span></span>
@@ -30,88 +33,120 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Chips Section -->
-        <h1>Chips</h1><hr><br>
-        <section>
-            <p style="text-align: center;">We have a variety of chips available for you to choose from. Here are some of the popular brands we offer:</p>
-            <ul style="list-style-type: none; padding: 0; text-align: center;">
-                <li>Doritos</li>
-                <li>Pringles</li>
-                <li>Cheetos</li>
-                <li>Lay's</li>
-                <li>Ruffles</li>
-                <li>Simba</li>
-                <li>Fritos</li>
-                <li>NikNaks</li>
-                <li>StyLrs</li>
-                <li>Ghost Pops</li>
-            </ul>
-            <img src="../assets/Chip_Header_No_Text.webp" >
-        </section><br><br>
+    <main class="products-container">
+        <!-- Date & Time Banner -->
+        <div class="datetime-display" id="datetime-display" aria-live="polite">
+            📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
+        </div>
 
-        <!-- Snacks Section -->
-        <h1>Snacks</h1><hr><br>
-        <section>
-            <p style="text-align: center;">Check out our wide range of sweet and savoury snacks:</p>
-            <ul style="list-style-type: none; padding: 0; text-align: center;">
-                <li>Lunch Bar</li>
-                <li>BarOne</li>
-                <li>Tex</li>
-                <li>KitKat</li>
-                <li>Cadbury Dairy Milk</li>
-                <li>Chappies Bubblegum</li>
-                <li>Wilson Toffees</li>
-                <li>Super C</li>
-                <li>Beacon Marshmallows</li>
-                <li>Bakers Blue Label Biscuits</li>
-            </ul>
-            <img src="../assets/Gemini_Generated_Image_swsd2bswsd2bswsd.png" >
-        </section><br><br>
+        <h1 class="page-title">Available Products</h1>
+        <hr class="title-divider">
 
-        <!-- Drinks Section -->
-        <h1>Drinks</h1><hr><br>
-        <section>
-            <p style="text-align: center;">Stay refreshed with our selection of cold and hot beverages:</p>
-            <ul style="list-style-type: none; padding: 0; text-align: center;">
-                <li>Coca-Cola</li>
-                <li>Fanta Orange</li>
-                <li>Sprite</li>
-                <li>Stoney Ginger Beer</li>
-                <li>Twizza</li>
-                <li>Mageu Number 1</li>
-                <li>Score Energy Drink</li>
-                <li>Switch Energy Drink</li>
-                <li>Bonaqua Still Water</li>
-                <li>Rooibos Tea Bags</li>
-            </ul>
-            <img src="../assets/92d3c2fe-3939-4e74-b2eb-05cc7658fa7a.webp"
+        <div class="cards-grid">
+            <!-- Chips Card -->
+            <section class="product-card">
+                <div class="card-img-wrapper">
+                    <a href="../assets/Chip_Header_No_Text.webp" data-lightbox="products-gallery" data-title="Variety of Crispy Chips">
+                        <img src="../assets/Chip_Header_No_Text.webp" alt="Variety of Chips" class="card-img">
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h2>Chips</h2>
+                    <p>We have a variety of crisp, delicious chips available:</p>
+                    <ul class="product-list">
+                        <li>Doritos</li>
+                        <li>Pringles</li>
+                        <li>Cheetos</li>
+                        <li>Lay's</li>
+                        <li>Ruffles</li>
+                        <li>Simba</li>
+                        <li>Fritos</li>
+                        <li>NikNaks</li>
+                        <li>StyLrs</li>
+                        <li>Ghost Pops</li>
+                    </ul>
+                </div>
+            </section>
 
-          </section><br>
+            <!-- Snacks Card -->
+            <section class="product-card">
+                <div class="card-img-wrapper">
+                    <a href="../assets/Gemini_Generated_Image_swsd2bswsd2bswsd.png" data-lightbox="products-gallery" data-title="Sweet and Savoury Snacks Selection">
+                        <img src="../assets/Gemini_Generated_Image_swsd2bswsd2bswsd.png" alt="Sweet and Savoury Snacks" class="card-img">
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h2>Snacks</h2>
+                    <p>Check out our wide range of sweet and savoury snacks:</p>
+                    <ul class="product-list">
+                        <li>Lunch Bar</li>
+                        <li>BarOne</li>
+                        <li>Tex</li>
+                        <li>KitKat</li>
+                        <li>Cadbury Dairy Milk</li>
+                        <li>Chappies Bubblegum</li>
+                        <li>Wilson Toffees</li>
+                        <li>Super C</li>
+                        <li>Beacon Marshmallows</li>
+                        <li>Bakers Blue Label Biscuits</li>
+                    </ul>
+                </div>
+            </section>
 
-        <!-- Other Items Section -->
-        <h1>Other Household Essentials</h1><hr><br>
-        <section>
-            <p style="text-align: center;">Everyday essentials and pantry staples available in store:</p>
-            <ul style="list-style-type: none; padding: 0; text-align: center;">
-                <li>White Bread</li>
-                <li>Fresh Milk (2L)</li>
-                <li>White Sugar (1kg)</li>
-                <li>Maize Meal (2.5kg)</li>
-                <li>Sunflower Oil (750ml)</li>
-                <li>Sunlight Laundry Soap</li>
-                <li>Colgate Toothpaste</li>
-                <li>Matches & Candles</li>
-                <li>Airtime Vouchers</li>
-                <li>Prepaid Electricity Top-ups</li>
-            </ul>
-            <img src="../assets/brown-canvas-tote-bag-filled-with-groceries-including-bananas-apples-milk-bread-and-eggs-isolated-on-white-background-free-png.webp"
-  ">
-        </section><br>
+            <!-- Drinks Card -->
+            <section class="product-card">
+                <div class="card-img-wrapper">
+                    <a href="../assets/92d3c2fe-3939-4e74-b2eb-05cc7658fa7a.webp" data-lightbox="products-gallery" data-title="Cold and Hot Beverages">
+                        <img src="../assets/92d3c2fe-3939-4e74-b2eb-05cc7658fa7a.webp" alt="Cold and Hot Beverages" class="card-img">
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h2>Drinks</h2>
+                    <p>Stay refreshed with cold and hot beverages:</p>
+                    <ul class="product-list">
+                        <li>Coca-Cola</li>
+                        <li>Fanta Orange</li>
+                        <li>Sprite</li>
+                        <li>Stoney Ginger Beer</li>
+                        <li>Twizza</li>
+                        <li>Mageu Number 1</li>
+                        <li>Score Energy Drink</li>
+                        <li>Switch Energy Drink</li>
+                        <li>Bonaqua Still Water</li>
+                        <li>Rooibos Tea Bags</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Household Essentials Card -->
+            <section class="product-card">
+                <div class="card-img-wrapper">
+                    <a href="../assets/brown-canvas-tote-bag-filled-with-groceries-including-bananas-apples-milk-bread-and-eggs-isolated-on-white-background-free-png.webp" data-lightbox="products-gallery" data-title="Household Essentials & Everyday Grocery Staples">
+                        <img src="../assets/brown-canvas-tote-bag-filled-with-groceries-including-bananas-apples-milk-bread-and-eggs-isolated-on-white-background-free-png.webp" alt="Household Essentials" class="card-img">
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h2>Household Essentials</h2>
+                    <p>Everyday essentials and pantry staples in store:</p>
+                    <ul class="product-list">
+                        <li>White Bread</li>
+                        <li>Fresh Milk (2L)</li>
+                        <li>White Sugar (1kg)</li>
+                        <li>Maize Meal (2.5kg)</li>
+                        <li>Sunflower Oil (750ml)</li>
+                        <li>Sunlight Laundry Soap</li>
+                        <li>Colgate Toothpaste</li>
+                        <li>Matches & Candles</li>
+                        <li>Airtime Vouchers</li>
+                        <li>Prepaid Electricity Top-ups</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p style="text-align: center;">&copy; 2024 King Spaza. All rights reserved.</p>
+        <p style="text-align: center;">&copy; 2026 King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
         <p style="text-align: center;">Follow us on social media: 
             <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
@@ -120,8 +155,12 @@
         </p>
     </footer>
 
-    <!-- Safe Script Execution -->
+    <!-- Lightbox JS with bundled jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+
+    <!-- Page Scripts -->
     <script>
+        // Navigation bar toggle
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
 
@@ -136,6 +175,22 @@
                 });
             });
         }
+
+        // Live Clock Script
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            
+            const dateEl = document.getElementById('current-date');
+            const timeEl = document.getElementById('current-time');
+
+            if (dateEl && timeEl) {
+                dateEl.textContent = now.toLocaleDateString('en-ZA', dateOptions);
+                timeEl.textContent = now.toLocaleTimeString('en-ZA', { hour12: true });
+            }
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
     </script>
 </body>
 </html>
