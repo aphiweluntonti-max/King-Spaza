@@ -436,11 +436,26 @@
                 isValid = false;
             }
 
-            // Successful Submission Handling
+            // Successful Submission & Email App Redirection Handling
             if (isValid) {
-                feedbackBanner.textContent = 'Thank you! Your message has been sent successfully.';
+                feedbackBanner.textContent = 'Thank you! Your message has been sent successfully. Opening your email app...';
                 feedbackBanner.className = 'feedback-banner success';
                 feedbackBanner.style.display = 'block';
+
+                // Construct mailto parameters
+                const recipient = "kingspaza@gmail.com";
+                const subject = encodeURIComponent("Website Contact Inquiry from " + nameValue);
+                const body = encodeURIComponent(
+                    `Name: ${nameValue}\n` +
+                    `Email: ${emailValue}\n` +
+                    `Phone: ${phoneValue}\n\n` +
+                    `Message:\n${messageValue}`
+                );
+
+                // Delay redirection slightly so the success message is visible
+                setTimeout(() => {
+                    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+                }, 1500);
 
                 contactForm.reset(); // Clear form fields
                 wordCounter.textContent = `Words: 0 / ${MAX_WORDS}`; // Reset counter display
