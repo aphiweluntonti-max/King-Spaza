@@ -100,9 +100,9 @@
     </header>
 
     <main>
-        <section class="enquiry-section">
+        <section class="enquiry-section" style="max-width: 500px; margin: auto; padding: 20px;">
             <!-- Date & Time Banner -->
-            <div class="datetime-display" id="datetime-display" aria-live="polite">
+            <div class="datetime-display" id="datetime-display" aria-live="polite" style="margin-bottom: 20px; text-align: center;">
                 📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
             </div>
 
@@ -125,15 +125,22 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., 27831234567" maxlength="12" pattern="\d{12}">
+                    <small class="form-text" style="color: #666; font-size: 0.85rem; margin-top: 4px;">Enter exactly 12 digits (e.g., country code + number like 27831234567).</small>
+                    <span class="error-message" id="phone-error"></span>
+                </div>
+
+                <div class="form-group">
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" rows="8" placeholder="Tell us more about your inquiry (Max 250 words)"></textarea> 
                     <div class="word-counter" id="word-counter">Words: 0 / 250</div>
                     <span class="error-message" id="message-error"></span>
                 </div>
 
-                <div class="button-group">
-                    <button type="submit">Submit</button>
-                    <button type="reset" id="reset-btn">Cancel</button>
+                <div class="button-group" style="text-align: center; margin-bottom: 40px;">
+                    <button type="submit" style="padding: 10px 20px; font-size: 1rem;">Submit</button>
+                    <button type="reset" id="reset-btn" style="padding: 10px 20px; font-size: 1rem; margin-left: 10px;">Cancel</button>
                 </div>
             </form>
         </section>
@@ -196,6 +203,7 @@
         const enquiryForm = document.getElementById('enquiry-form');
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
         const messageInput = document.getElementById('message');
         const wordCounter = document.getElementById('word-counter');
         const feedbackBanner = document.getElementById('feedback-banner');
@@ -251,12 +259,14 @@
             });
         });
 
+        // Submit Event Listener with Email App Redirection
         enquiryForm.addEventListener('submit', function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Stop default HTML submission
             clearAllErrors();
 
             let isValid = true;
 
+            // Name check
             const nameValue = nameInput.value.trim();
             if (nameValue === '') {
                 showError(nameInput, 'name-error', 'Please enter your name.');
@@ -266,6 +276,7 @@
                 isValid = false;
             }
 
+            // Email check
             const emailValue = emailInput.value.trim();
             if (emailValue === '') {
                 showError(emailInput, 'email-error', 'Please enter your email address.');
@@ -275,6 +286,7 @@
                 isValid = false;
             }
 
+            // Message check
             const messageValue = messageInput.value.trim();
             const wordCount = countWords(messageValue);
 
@@ -289,10 +301,24 @@
                 isValid = false;
             }
 
+            // If validation passes, construct mailto & redirect
             if (isValid) {
-                feedbackBanner.textContent = 'Thank you! Your enquiry has been submitted successfully.';
+                feedbackBanner.textContent = 'Thank you! Your enquiry has been verified. Opening your email app...';
                 feedbackBanner.className = 'feedback-banner success';
                 feedbackBanner.style.display = 'block';
+
+                const recipient = "kingspaza@gmail.com";
+                const subject = encodeURIComponent("Website Inquiry from " + nameValue);
+                const body = encodeURIComponent(
+                    `Name: ${nameValue}\n` +
+                    `Email: ${emailValue}\n\n` +
+                    `Inquiry Message:\n${messageValue}`
+                );
+
+                // Redirect after a 1 second delay
+                setTimeout(() => {
+                    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+                }, 1000);
 
                 enquiryForm.reset();
                 wordCounter.textContent = `Words: 0 / ${MAX_WORDS}`;

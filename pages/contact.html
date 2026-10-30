@@ -73,6 +73,69 @@
             color: #2e7d32;
             border: 1px solid #a5d6a7;
         }
+
+        /* Accordion Styling */
+        .contact-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .accordion-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 15px 20px;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a237e;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #e2e2e2;
+        }
+
+        .accordion-icon {
+            font-size: 1.4rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            background-color: #ffffff;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Active/Open State for Accordion */
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+            padding: 15px 20px;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body>
@@ -101,20 +164,28 @@
     <main>
         <section class="contact-section">
             <!-- Date & Time Banner -->
-            <div class="datetime-display" id="datetime-display" aria-live="polite">
+            <div class="datetime-display" id="datetime-display" aria-live="polite" style="margin-bottom: 20px; text-align: center;">
                 📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
             </div>
             
-            <h1>Get in Touch</h1><hr><br>
-            <ul style="list-style-type: none; padding: 0;">
-                <li style="text-align: center;">Email: kingspaza@gmail.com</li>
-                <li style="text-align: center;">Phone: 011 555 1234</li>
-                <li style="text-align: center;">Hours: Monday to Sunday, 7:00 AM - 8:00 PM SAST</li>
-            </ul>
+            <!-- Fixed Accordion Component -->
+            <div class="accordion-item active">
+                <button class="accordion-header">
+                    Get in Touch with Us 
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <ul style="list-style-type: none; padding: 0; margin: 0;">
+                        <li style="text-align: center;">Email: kingspaza@gmail.com</li>
+                        <li style="text-align: center;">Phone: 011 555 1234</li>
+                        <li style="text-align: center;">Hours: Monday to Sunday, 7:00 AM - 8:00 PM SAST</li>
+                    </ul>
+                </div>
+            </div>
             <br><hr>
         </section>
 
-        <section>
+        <section style="max-width: 800px; margin: 0 auto; padding: 20px;">
             <h1>Our Office</h1><hr><br>
             <ul style="list-style-type: none; padding: 0;">
                 <!-- Location details -->
@@ -151,7 +222,8 @@
 
                 <div class="form-group">
                     <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Your contact number">
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., 27831234567" maxlength="12" pattern="\d{12}">
+                    <small class="form-text" style="color: #666; font-size: 0.85rem; margin-top: 4px;">Enter exactly 12 digits (e.g., country code + number like 27831234567).</small>
                     <span class="error-message" id="phone-error"></span>
                 </div>
 
@@ -197,6 +269,16 @@
                 });
             });
         }
+
+        // Accordion Functionality Script
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const currentItem = header.parentElement;
+                currentItem.classList.toggle('active');
+            });
+        });
 
         // Live Clock & Date Script
         function updateDateTime() {
@@ -245,6 +327,14 @@
             return trimmed.split(/\s+/).length;
         }
 
+        // Real-time phone restriction (numbers only, max 12 digits)
+        phoneInput.addEventListener('input', function () {
+            this.value = this.value.replace(/\D/g, '');
+            if (this.value.length > 12) {
+                this.value = this.value.slice(0, 12);
+            }
+        });
+
         // Real-time word counter listener
         messageInput.addEventListener('input', function () {
             const words = countWords(messageInput.value);
@@ -263,11 +353,6 @@
         function isValidEmail(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
-        }
-
-        function isValidPhone(phone) {
-            const phoneRegex = /^[\d\s\+\-\(\)]{10,}$/;
-            return phoneRegex.test(phone);
         }
 
         // Display individual error messages
@@ -326,13 +411,13 @@
                 isValid = false;
             }
 
-            // Phone Validation
+            // Phone Validation (Strict 12 digits)
             const phoneValue = phoneInput.value.trim();
             if (phoneValue === '') {
                 showError(phoneInput, 'phone-error', 'Please enter your phone number.');
                 isValid = false;
-            } else if (!isValidPhone(phoneValue)) {
-                showError(phoneInput, 'phone-error', 'Please enter a valid phone number (at least 10 digits).');
+            } else if (phoneValue.length !== 12) {
+                showError(phoneInput, 'phone-error', 'Phone number must be exactly 12 digits long.');
                 isValid = false;
             }
 

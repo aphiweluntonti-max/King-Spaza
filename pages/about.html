@@ -13,8 +13,8 @@
     <style>
         /* CSS to minimize and fit the image neatly */
         .about-img-container {
-            max-width: 500px; /* Limits the image width */
-            max-height: 250px; /* Limits the image height */
+            max-width: 500px;
+            max-height: 250px;
             margin: 20px auto;
             overflow: hidden;
             border-radius: 10px;
@@ -24,14 +24,77 @@
         .about-img-container img {
             width: 100%;
             height: 250px;
-            object-fit: cover; /* Prevents stretching */
+            object-fit: cover;
             display: block;
             transition: transform 0.3s ease;
             cursor: pointer;
         }
 
         .about-img-container img:hover {
-            transform: scale(1.03); /* Subtle zoom effect on hover */
+            transform: scale(1.03);
+        }
+
+        /* Accordion Styling */
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .accordion-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 15px 20px;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a237e;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #e2e2e2;
+        }
+
+        .accordion-icon {
+            font-size: 1.4rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            background-color: #ffffff;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Active/Open State */
+        .accordion-item.active .accordion-content {
+            max-height: 200px; /* Adjust if content is longer */
+            padding: 15px 20px;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg); /* Turns '+' into 'x' or use standard minus */
         }
     </style>
 </head>
@@ -62,19 +125,44 @@
     <main>
         <section class="about-section">
             <!-- Date & Time Banner -->
-            <div class="datetime-display" id="datetime-display" aria-live="polite">
+            <div class="datetime-display" id="datetime-display" aria-live="polite" style="margin-bottom: 20px; text-align: center;">
                 📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
             </div>
 
-            <h1>About King Spaza</h1>
-            <p>Welcome to King Spaza! We are a leading retailer in the South African market, dedicated to providing high-quality products at competitive prices.</p>
-            <hr><br> 
-            <h1>Our Mission</h1>
-            <p>Our mission is to offer a wide range of products while ensuring excellent customer service and a welcoming shopping experience for all our customers.</p>
-            <hr><br>
-            <h1>Our Vision</h1>
-            <p>We envision becoming the most trusted and preferred spaza shop in the region, known for our commitment to quality, affordability, and customer satisfaction.</p>
-            <hr><br>
+            <!-- Accordion Item 1: About -->
+            <div class="accordion-item active">
+                <button class="accordion-header">
+                    About King Spaza
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Welcome to King Spaza! We are a leading retailer in the South African market, dedicated to providing high-quality products at competitive prices.</p>
+                </div>
+            </div>
+
+            <!-- Accordion Item 2: Mission -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    Our Mission
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Our mission is to offer a wide range of products while ensuring excellent customer service and a welcoming shopping experience for all our customers.</p>
+                </div>
+            </div>
+
+            <!-- Accordion Item 3: Vision -->
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    Our Vision
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>We envision becoming the most trusted and preferred spaza shop in the region, known for our commitment to quality, affordability, and customer satisfaction.</p>
+                </div>
+            </div>
+
+            <br>
 
             <!-- Minimized Image Wrapped in Lightbox Link -->
             <div class="about-img-container">
@@ -115,6 +203,24 @@
                 });
             });
         }
+
+        // Accordion Functionality Script
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const currentItem = header.parentElement;
+                
+                // Optional: Close other open accordions (uncomment if you want only one open at a time)
+                /*
+                document.querySelectorAll('.accordion-item').item.forEach(item => {
+                    if (item !== currentItem) item.classList.remove('active');
+                });
+                */
+
+                currentItem.classList.toggle('active');
+            });
+        });
 
         // Live Clock & Date Script
         function updateDateTime() {
