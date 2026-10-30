@@ -70,5 +70,7 @@ CHANGELOG from part 2 to part 3:
 1.Contact form and enquiry have Javascript validation feedback instead of html validation feedback.
 2.Implemented a gallery livebox for all of my pictures.
 3.Implemented dynamic content that is the date and time on all of my html pages.
+4.Added screenshots of my moblie responsiveness to my ReadMe.md file.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 ![alt text](image.png)
+![alt text](image-1.png)
