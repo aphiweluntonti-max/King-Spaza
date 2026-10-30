@@ -9,11 +9,71 @@
     
     <!-- Lightbox2 CSS for Gallery Popup -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+
+    <style>
+        /* Search Bar Component Styling */
+        .search-container {
+            max-width: 500px;
+            margin: 20px auto 30px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            font-size: 1rem;
+            border: 2px solid #1a237e;
+            border-radius: 25px;
+            outline: none;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 8px rgba(26, 35, 126, 0.3);
+            border-color: #0d47a1;
+        }
+
+        .clear-search-btn {
+            position: absolute;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #888;
+            cursor: pointer;
+            display: none;
+        }
+
+        .clear-search-btn:hover {
+            color: #333;
+        }
+
+        /* Highlight matching items */
+        .product-list li.highlight {
+            font-weight: bold;
+            background-color: #fff9c4;
+            border-radius: 4px;
+            padding-left: 5px;
+        }
+
+        /* No Results Notice */
+        .no-results-msg {
+            display: none;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #d32f2f;
+            margin: 40px 0;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
     <header class="header-nav">
         <a href="../index.html" class="logo-link">
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
+            <span class="brand-title">KINGSPAZA.COM</span>
         </a>
 
         <!-- Hamburger Button -->
@@ -42,7 +102,18 @@
         <h1 class="page-title">Available Products</h1>
         <hr class="title-divider">
 
-        <div class="cards-grid">
+        <!-- Live Product Search Bar -->
+        <div class="search-container">
+            <input type="text" id="product-search" class="search-input" placeholder="🔍 Search products (e.g. Doritos, Milk, Coca-Cola)..." aria-label="Search available products">
+            <button id="clear-search" class="clear-search-btn" aria-label="Clear search">✕</button>
+        </div>
+
+        <!-- No Results Fallback Message -->
+        <div id="no-results" class="no-results-msg">
+            No products found matching your search. Please try another item!
+        </div>
+
+        <div class="cards-grid" id="cards-grid">
             <!-- Chips Card -->
             <section class="product-card">
                 <div class="card-img-wrapper">
@@ -89,6 +160,8 @@
                         <li>Super C</li>
                         <li>Beacon Marshmallows</li>
                         <li>Bakers Blue Label Biscuits</li>
+                        <li>Ouma Rusks</li>
+                        <li>Famous Brands Cookies</li>
                     </ul>
                 </div>
             </section>
@@ -114,6 +187,7 @@
                         <li>Switch Energy Drink</li>
                         <li>Bonaqua Still Water</li>
                         <li>Rooibos Tea Bags</li>
+                        <li>Instant Coffee</li>
                     </ul>
                 </div>
             </section>
@@ -139,6 +213,7 @@
                         <li>Matches & Candles</li>
                         <li>Airtime Vouchers</li>
                         <li>Prepaid Electricity Top-ups</li>
+                        <li>Cleaning Supplies</li>
                     </ul>
                 </div>
             </section>
@@ -146,7 +221,7 @@
     </main>
 
     <footer>
-        <p style="text-align: center;">&copy; 2026 King Spaza. All rights reserved.</p>
+        <p style="text-align: center;">&copy; <span id="copyright-year">2026</span> King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
         <p style="text-align: center;">Follow us on social media: 
             <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
@@ -183,14 +258,79 @@
             
             const dateEl = document.getElementById('current-date');
             const timeEl = document.getElementById('current-time');
+            const yearEl = document.getElementById('copyright-year');
 
             if (dateEl && timeEl) {
                 dateEl.textContent = now.toLocaleDateString('en-ZA', dateOptions);
                 timeEl.textContent = now.toLocaleTimeString('en-ZA', { hour12: true });
             }
+
+            if (yearEl) {
+                yearEl.textContent = now.getFullYear();
+            }
         }
         updateDateTime();
         setInterval(updateDateTime, 1000);
+
+        // Real-Time Product Search Functionality
+        const searchInput = document.getElementById('product-search');
+        const clearBtn = document.getElementById('clear-search');
+        const productCards = document.querySelectorAll('.product-card');
+        const noResultsMsg = document.getElementById('no-results');
+
+        function filterProducts() {
+            const query = searchInput.value.toLowerCase().trim();
+            let totalVisibleCards = 0;
+
+            // Toggle clear button visibility
+            clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
+            productCards.forEach(card => {
+                const categoryTitle = card.querySelector('h2').textContent.toLowerCase();
+                const items = card.querySelectorAll('.product-list li');
+                let cardHasMatch = false;
+
+                // Check category title match
+                const isCategoryMatch = categoryTitle.includes(query);
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+
+                    if (query === '' || text.includes(query) || isCategoryMatch) {
+                        item.style.display = 'block';
+                        cardHasMatch = true;
+
+                        if (query !== '' && text.includes(query)) {
+                            item.classList.add('highlight');
+                        } else {
+                            item.classList.remove('highlight');
+                        }
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('highlight');
+                    }
+                });
+
+                // Show/Hide Card based on matches
+                if (cardHasMatch) {
+                    card.style.display = 'flex';
+                    totalVisibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Toggle No Results Message
+            noResultsMsg.style.display = totalVisibleCards === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', filterProducts);
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            filterProducts();
+            searchInput.focus();
+        });
     </script>
 </body>
 </html>

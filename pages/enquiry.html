@@ -6,11 +6,80 @@
     <title>Enquiry - King Spaza</title>
     <link rel="icon" href="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png">
     <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* Form Field & Validation Styling */
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 10px 12px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Error state styling */
+        .form-group input.error-border,
+        .form-group textarea.error-border {
+            border-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            min-height: 18px;
+            font-weight: 500;
+        }
+
+        /* Word Counter Styling */
+        .word-counter {
+            font-size: 0.85rem;
+            color: #555;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        .word-counter.limit-reached {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        /* Feedback Notification Banner */
+        .feedback-banner {
+            display: none;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .feedback-banner.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+    </style>
 </head>
 <body>
     <header class="header-nav">
         <a href="../index.html" class="logo-link">
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
+            <span class="brand-title">KINGSPAZA.COM</span>
         </a>
 
         <!-- Hamburger Button -->
@@ -20,7 +89,7 @@
             <span></span>
         </button>
         
-        <!-- Navigation Bar (ID added) -->
+        <!-- Navigation Bar -->
         <nav class="nav-links" id="nav-menu">
             <a href="../index.html">HOME</a>
             <a href="./about.html">ABOUT US</a>
@@ -32,32 +101,46 @@
 
     <main>
         <section class="enquiry-section">
-             <!-- Date & Time Banner -->
-        <div class="datetime-display" id="datetime-display" aria-live="polite">
-            📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
-        </div>
-            <h1>Inquiry form</h1><br><hr>
+            <!-- Date & Time Banner -->
+            <div class="datetime-display" id="datetime-display" aria-live="polite">
+                📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
+            </div>
 
-            <form action="#" method="post">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Tell us who you are" required>
+            <h1>Inquiry form</h1><br><hr><br>
 
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="Where we can reply to you" required>
+            <!-- Success Feedback Notice Container -->
+            <div id="feedback-banner" class="feedback-banner" role="alert"></div>
 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="10" placeholder="Tell us more about your inquiry" required></textarea> 
+            <form id="enquiry-form" action="#" method="post" novalidate>
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Tell us who you are">
+                    <span class="error-message" id="name-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Where we can reply to you">
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="8" placeholder="Tell us more about your inquiry (Max 250 words)"></textarea> 
+                    <div class="word-counter" id="word-counter">Words: 0 / 250</div>
+                    <span class="error-message" id="message-error"></span>
+                </div>
 
                 <div class="button-group">
                     <button type="submit">Submit</button>
-                    <button type="reset">Cancel</button>
+                    <button type="reset" id="reset-btn">Cancel</button>
                 </div>
             </form>
         </section>
     </main>
 
     <footer>
-        <p style="text-align: center;">&copy; 2026 King Spaza. All rights reserved.</p>
+        <p style="text-align: center;">&copy; <span id="copyright-year">2026</span> King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
         <p style="text-align: center;">Follow us on social media: 
             <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
@@ -66,8 +149,9 @@
         </p>
     </footer>
 
-    <!-- Functional Script with Guard Check -->
+    <!-- Page Scripts -->
     <script>
+        // Mobile Navigation Toggle
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
 
@@ -82,6 +166,144 @@
                 });
             });
         }
+
+        // Live Clock & Date Script
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-ZA', dateOptions);
+            const formattedTime = now.toLocaleTimeString('en-ZA', { hour12: true });
+
+            const dateEl = document.getElementById('current-date');
+            const timeEl = document.getElementById('current-time');
+            const yearEl = document.getElementById('copyright-year');
+
+            if (dateEl && timeEl) {
+                dateEl.textContent = formattedDate;
+                timeEl.textContent = formattedTime;
+            }
+
+            if (yearEl) {
+                yearEl.textContent = now.getFullYear();
+            }
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // ==========================================
+        // JavaScript Form Validation & Word Counter
+        // ==========================================
+        const enquiryForm = document.getElementById('enquiry-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const wordCounter = document.getElementById('word-counter');
+        const feedbackBanner = document.getElementById('feedback-banner');
+        const resetBtn = document.getElementById('reset-btn');
+
+        const MAX_WORDS = 250;
+
+        function countWords(str) {
+            const trimmed = str.trim();
+            if (trimmed === '') return 0;
+            return trimmed.split(/\s+/).length;
+        }
+
+        messageInput.addEventListener('input', function () {
+            const words = countWords(messageInput.value);
+            wordCounter.textContent = `Words: ${words} / ${MAX_WORDS}`;
+
+            if (words > MAX_WORDS) {
+                wordCounter.classList.add('limit-reached');
+                showError(messageInput, 'message-error', `Message exceeds the 250-word limit (Current: ${words} words).`);
+            } else {
+                wordCounter.classList.remove('limit-reached');
+                clearError(messageInput, 'message-error');
+            }
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(inputElement, errorElementId, message) {
+            inputElement.classList.add('error-border');
+            document.getElementById(errorElementId).textContent = message;
+        }
+
+        function clearError(inputElement, errorElementId) {
+            inputElement.classList.remove('error-border');
+            document.getElementById(errorElementId).textContent = '';
+        }
+
+        function clearAllErrors() {
+            clearError(nameInput, 'name-error');
+            clearError(emailInput, 'email-error');
+            clearError(messageInput, 'message-error');
+            feedbackBanner.style.display = 'none';
+        }
+
+        [nameInput, emailInput].forEach(field => {
+            field.addEventListener('input', () => {
+                const errorSpanId = field.id + '-error';
+                clearError(field, errorSpanId);
+            });
+        });
+
+        enquiryForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            clearAllErrors();
+
+            let isValid = true;
+
+            const nameValue = nameInput.value.trim();
+            if (nameValue === '') {
+                showError(nameInput, 'name-error', 'Please enter your name.');
+                isValid = false;
+            } else if (nameValue.length < 2) {
+                showError(nameInput, 'name-error', 'Name must be at least 2 characters long.');
+                isValid = false;
+            }
+
+            const emailValue = emailInput.value.trim();
+            if (emailValue === '') {
+                showError(emailInput, 'email-error', 'Please enter your email address.');
+                isValid = false;
+            } else if (!isValidEmail(emailValue)) {
+                showError(emailInput, 'email-error', 'Please enter a valid email address (e.g. name@domain.com).');
+                isValid = false;
+            }
+
+            const messageValue = messageInput.value.trim();
+            const wordCount = countWords(messageValue);
+
+            if (messageValue === '') {
+                showError(messageInput, 'message-error', 'Please enter your inquiry message.');
+                isValid = false;
+            } else if (wordCount < 10) {
+                showError(messageInput, 'message-error', 'Inquiry message must be at least 10 words long.');
+                isValid = false;
+            } else if (wordCount > MAX_WORDS) {
+                showError(messageInput, 'message-error', `Message cannot exceed ${MAX_WORDS} words (Currently ${wordCount} words).`);
+                isValid = false;
+            }
+
+            if (isValid) {
+                feedbackBanner.textContent = 'Thank you! Your enquiry has been submitted successfully.';
+                feedbackBanner.className = 'feedback-banner success';
+                feedbackBanner.style.display = 'block';
+
+                enquiryForm.reset();
+                wordCounter.textContent = `Words: 0 / ${MAX_WORDS}`;
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            clearAllErrors();
+            wordCounter.textContent = `Words: 0 / ${MAX_WORDS}`;
+            wordCounter.classList.remove('limit-reached');
+        });
     </script>
 </body>
 </html>

@@ -473,3 +473,18 @@ header h1 {
 .product-list li:last-child {
     border-bottom: none;
 }
+/* Align logo image and title side-by-side */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px; /* Space between logo image and text */
+}
+
+/* Style for KINGSPAZA.COM text */
+.brand-title {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}

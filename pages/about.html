@@ -6,21 +6,50 @@
     <title>About Us - King Spaza</title>
     <link rel="icon" href="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png">
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Lightbox2 CSS for Image Popup -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <style>
+        /* CSS to minimize and fit the image neatly */
+        .about-img-container {
+            max-width: 500px; /* Limits the image width */
+            max-height: 250px; /* Limits the image height */
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-img-container img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; /* Prevents stretching */
+            display: block;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .about-img-container img:hover {
+            transform: scale(1.03); /* Subtle zoom effect on hover */
+        }
+    </style>
 </head>
 <body>
     <header class="header-nav">
         <a href="../index.html" class="logo-link">
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
+            <span class="brand-title">KINGSPAZA.COM</span>
         </a>
 
-        <!-- Hamburger Button (Required) -->
+        <!-- Hamburger Button -->
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <!-- Navigation Menu -->
+        <!-- Navigation Bar -->
         <nav class="nav-links" id="nav-menu">
             <a href="../index.html">HOME</a>
             <a href="./about.html" class="active">ABOUT US</a>
@@ -32,44 +61,86 @@
 
     <main>
         <section class="about-section">
-             <!-- Date & Time Banner -->
-        <div class="datetime-display" id="datetime-display" aria-live="polite">
-            📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
-        </div>
-            <h1>This is our story</h1><hr><br>
-            <p>It was established in 2014 by Mohammed Sahir where it was built in Port Elizabeth, Motherwell, near the SportsCenter, and is well beloved by the community.</p>     
-            
-            <h1>Mission statement</h1><hr><br>
-            <p>Provide convenient, affordable everyday goods with friendly, reliable service to our local community.
-            The primary goal is to serve as a vital resource that ensures financial stability and economic empowerment for the entrepreneur and their family.</p>
-            
-            <h1>Vision statement</h1><hr><br>
-            <p>To be the most trusted and convenient spaza in our area, improving daily life for every neighbour.
-            Often aspire to grow the business into a sustainable and financially stable micro-enterprise within the township economy.</p>
-        </section><hr><br>
+            <!-- Date & Time Banner -->
+            <div class="datetime-display" id="datetime-display" aria-live="polite">
+                📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
+            </div>
 
-        <img class="hero-image" src="../assets/johannesburg-south-africa-view-of-n-n-c-tuck-shop-during-a-visit-to-the-family-of-the-nine.webp" alt="King Spaza Store" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+            <h1>About King Spaza</h1>
+            <p>Welcome to King Spaza! We are a leading retailer in the South African market, dedicated to providing high-quality products at competitive prices.</p>
+            <hr><br> 
+            <h1>Our Mission</h1>
+            <p>Our mission is to offer a wide range of products while ensuring excellent customer service and a welcoming shopping experience for all our customers.</p>
+            <hr><br>
+            <h1>Our Vision</h1>
+            <p>We envision becoming the most trusted and preferred spaza shop in the region, known for our commitment to quality, affordability, and customer satisfaction.</p>
+            <hr><br>
+
+            <!-- Minimized Image Wrapped in Lightbox Link -->
+            <div class="about-img-container">
+                <a href="../assets/391a51b4ed8b698f94fae7c92c9671d1a76a3f70-1500x1000.webp" data-lightbox="about-gallery" data-title="King Spaza Store Front">
+                    <img src="../assets/391a51b4ed8b698f94fae7c92c9671d1a76a3f70-1500x1000.webp" alt="King Spaza Store" class="about-img">
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p style="text-align: center;">&copy; 2026 King Spaza. All rights reserved.</p>
+        <p style="text-align: center;">&copy; <span id="copyright-year">2026</span> King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
+        <p style="text-align: center;">Follow us on social media: 
+            <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
+            <a href="https://www.instagram.com/kingspaza" target="_blank">Instagram</a> | 
+            <a href="https://twitter.com/kingspaza" target="_blank">Twitter</a>
+        </p>
     </footer>
 
-    <!-- JavaScript for Menu Interactivity -->
+    <!-- Lightbox JS with bundled jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+
+    <!-- Page Scripts -->
     <script>
+        // Mobile Navigation Toggle
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
 
-        hamburgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+        if (hamburgerBtn && navMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
             });
-        });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Live Clock & Date Script
+        function updateDateTime() {
+            const now = new Date();
+
+            const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-ZA', dateOptions);
+            const formattedTime = now.toLocaleTimeString('en-ZA', { hour12: true });
+
+            const dateEl = document.getElementById('current-date');
+            const timeEl = document.getElementById('current-time');
+            const yearEl = document.getElementById('copyright-year');
+
+            if (dateEl && timeEl) {
+                dateEl.textContent = formattedDate;
+                timeEl.textContent = formattedTime;
+            }
+
+            if (yearEl) {
+                yearEl.textContent = now.getFullYear();
+            }
+        }
+
+        // Run immediately on page load and update every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
     </script>
 </body>
 </html>

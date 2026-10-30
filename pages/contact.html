@@ -3,14 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Contact Us - King Spaza</title>
     <link rel="icon" href="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png">
     <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* Form Field & Validation Styling */
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 10px 12px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Error state styling */
+        .form-group input.error-border,
+        .form-group textarea.error-border {
+            border-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            min-height: 18px;
+            font-weight: 500;
+        }
+
+        /* Word Counter Styling */
+        .word-counter {
+            font-size: 0.85rem;
+            color: #555;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        .word-counter.limit-reached {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        /* Feedback Notification Banner */
+        .feedback-banner {
+            display: none;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .feedback-banner.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+    </style>
 </head>
 <body>
-         <header class="header-nav">
+    <header class="header-nav">
         <a href="../index.html" class="logo-link">
             <img class="logo-img" src="../assets/Gemini_Generated_Image_jdhbpnjdhbpnjdhb.png" alt="King Spaza Logo">
+            <span class="brand-title">KINGSPAZA.COM</span>
         </a>
 
         <!-- Hamburger Button with matching ID -->
@@ -23,57 +92,86 @@
         <nav class="nav-links" id="nav-menu">
             <a href="../index.html">HOME</a>
             <a href="./about.html">ABOUT US</a>
-            <a href="./availableproducts.html" class="active">AVAILABLE PRODUCTS</a>
+            <a href="./availableproducts.html">AVAILABLE PRODUCTS</a>
             <a href="./enquiry.html">ENQUIRY</a>
-            <a href="./contact.html">CONTACT US</a>
+            <a href="./contact.html" class="active">CONTACT US</a>
         </nav>
     </header>
+
     <main>
         <section class="contact-section">
-             <!-- Date & Time Banner -->
-        <div class="datetime-display" id="datetime-display" aria-live="polite">
-            📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
-        </div>
-     <h1>Get in Touch </h1><hr><br/>
-            <ul>
-                <li style="text-align: center;">Email: kingspaza@gmail.com </li>
-                <li style="text-align: center;">Phone: 011 555 1234 </li>
-                <li style="text-align: center;"> Hours: Monday to Sunday, 7:00 AM - 8:00 PM SAST </li>
+            <!-- Date & Time Banner -->
+            <div class="datetime-display" id="datetime-display" aria-live="polite">
+                📅 <span id="current-date">Loading...</span> | 🕒 <span id="current-time">Loading...</span>
+            </div>
+            
+            <h1>Get in Touch</h1><hr><br>
+            <ul style="list-style-type: none; padding: 0;">
+                <li style="text-align: center;">Email: kingspaza@gmail.com</li>
+                <li style="text-align: center;">Phone: 011 555 1234</li>
+                <li style="text-align: center;">Hours: Monday to Sunday, 7:00 AM - 8:00 PM SAST</li>
             </ul>
-            <br/><hr/>
+            <br><hr>
         </section>
-            <section>
-            <h1>Our Office</h1><hr><br/>
-            <ul>
-                <!--Location details-->
-                <li style="text-align: center;">Address:Nzunga St, Motherwell 7, Motherwell, 6211 </li>
-                <li style="text-align: center;"> Map: View on Google Map </li>
+
+        <section>
+            <h1>Our Office</h1><hr><br>
+            <ul style="list-style-type: none; padding: 0;">
+                <!-- Location details -->
+                <li style="text-align: center;">Address: Nzunga St, Motherwell 7, Motherwell, 6211</li>
+                <li style="text-align: center;">Map: View on Google Maps</li>
             </ul>
-            <!--Google Map iframe-->
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3315.0040324615834!2d25.58627317571087!3d-33.81220901613015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e7b2a12f580cf5f%3A0xc77da77d7f94f8f8!2sKING'S%20SPAZA!5e0!3m2!1sen!2sza!4v1786674746962!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
-             height="450" style="border:0;" 
-             allowfullscreen="" 
-             loading="lazy" 
-             referrerpolicy="strict-origin-when-cross-origin">
-            </iframe><br/><br/><hr/>
+            
+            <!-- Google Map iframe -->
+            <div style="text-align: center;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3315.0040324615834!2d25.58627317571087!3d-33.81220901613015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e7b2a12f580cf5f%3A0xc77da77d7f94f8f8!2sKING'S%20SPAZA!5e0!3m2!1sen!2sza!4v1786674746962!5m2!1sen!2sza" width="100%" height="450" style="border:0; max-width:800px; margin:auto;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <br><hr>
         </section>
-        <form style="display: block; margin:auto" action="#" method="post">
-            <label for="name" name="name">Your Name: </label><br/>
-            <input type="text" id="name" placeholder="Tell us who you are" required><br/><br/>
-            <label for="email" name="email"> Email Address: </label><br/>
-            <input type="email" name="email" placeholder="Where we can reply to you" required>
-            <br/><br/>
-            <label for="phone" name="phone"> Phone Number: </label><br/>
-            <input type="tel" name="phone" placeholder="Your contact number" required>
-            <br/><br/>
-                <label for="message" name="message">Message:</label><br/>
-                <textarea name="message" rows="10" cols="40" placeholder="Tell us more about your project" required></textarea> 
-                <button type="submit">
-                    Submit 
-                </button>
+
+        <!-- Contact Form with 250-Word Limit Validation -->
+        <section class="contact-form-section" style="max-width: 500px; margin: auto; padding: 0 20px;">
+            <h1>Send us a Message</h1><hr><br>
+
+            <!-- Success Feedback Notice Container -->
+            <div id="feedback-banner" class="feedback-banner" role="alert"></div>
+
+            <form id="contact-form" action="#" method="post" novalidate>
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Tell us who you are">
+                    <span class="error-message" id="name-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Where we can reply to you">
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Your contact number">
+                    <span class="error-message" id="phone-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="8" placeholder="Tell us more about your inquiry (Max 250 words)"></textarea> 
+                    <div class="word-counter" id="word-counter">Words: 0 / 250</div>
+                    <span class="error-message" id="message-error"></span>
+                </div>
+
+                <div class="button-group" style="text-align: center; margin-bottom: 40px;">
+                    <button type="submit" style="padding: 10px 20px; font-size: 1rem;">Submit</button>
+                    <button type="reset" id="reset-btn" style="padding: 10px 20px; font-size: 1rem; margin-left: 10px;">Cancel</button>
+                </div>
+            </form>
+        </section>
     </main>
+
     <footer>
-        <p style="text-align: center;">&copy; 2026 King Spaza. All rights reserved.</p>
+        <p style="text-align: center;">&copy; <span id="copyright-year">2026</span> King Spaza. All rights reserved.</p>
         <p style="text-align: center;">Contact us: <a href="mailto:info@kingspaza.com">info@kingspaza.com</a></p>
         <p style="text-align: center;">Follow us on social media: 
             <a href="https://www.facebook.com/kingspaza" target="_blank">Facebook</a> | 
@@ -81,19 +179,194 @@
             <a href="https://twitter.com/kingspaza" target="_blank">Twitter</a>
         </p>
     </footer>
-      <script>
+
+    <!-- Page Scripts -->
+    <script>
+        // Mobile Navigation Toggle Guard Check
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const navMenu = document.getElementById('nav-menu');
 
-        hamburgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        if (hamburgerBtn && navMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Live Clock & Date Script
+        function updateDateTime() {
+            const now = new Date();
+
+            const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-ZA', dateOptions);
+            const formattedTime = now.toLocaleTimeString('en-ZA', { hour12: true });
+
+            const dateEl = document.getElementById('current-date');
+            const timeEl = document.getElementById('current-time');
+            const yearEl = document.getElementById('copyright-year');
+
+            if (dateEl && timeEl) {
+                dateEl.textContent = formattedDate;
+                timeEl.textContent = formattedTime;
+            }
+
+            if (yearEl) {
+                yearEl.textContent = now.getFullYear();
+            }
+        }
+
+        // Run immediately on page load, then update every second
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // ==========================================
+        // JavaScript Form Validation & Word Counter
+        // ==========================================
+        const contactForm = document.getElementById('contact-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const messageInput = document.getElementById('message');
+        const wordCounter = document.getElementById('word-counter');
+        const feedbackBanner = document.getElementById('feedback-banner');
+        const resetBtn = document.getElementById('reset-btn');
+
+        const MAX_WORDS = 250;
+
+        // Helper to count words accurately
+        function countWords(str) {
+            const trimmed = str.trim();
+            if (trimmed === '') return 0;
+            return trimmed.split(/\s+/).length;
+        }
+
+        // Real-time word counter listener
+        messageInput.addEventListener('input', function () {
+            const words = countWords(messageInput.value);
+            wordCounter.textContent = `Words: ${words} / ${MAX_WORDS}`;
+
+            if (words > MAX_WORDS) {
+                wordCounter.classList.add('limit-reached');
+                showError(messageInput, 'message-error', `Message exceeds the 250-word limit (Current: ${words} words).`);
+            } else {
+                wordCounter.classList.remove('limit-reached');
+                clearError(messageInput, 'message-error');
+            }
         });
 
-        // Close menu automatically when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+        // Regex helpers
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\d\s\+\-\(\)]{10,}$/;
+            return phoneRegex.test(phone);
+        }
+
+        // Display individual error messages
+        function showError(inputElement, errorElementId, message) {
+            inputElement.classList.add('error-border');
+            document.getElementById(errorElementId).textContent = message;
+        }
+
+        // Clear error messaging from input field
+        function clearError(inputElement, errorElementId) {
+            inputElement.classList.remove('error-border');
+            document.getElementById(errorElementId).textContent = '';
+        }
+
+        // Reset all form error states
+        function clearAllErrors() {
+            clearError(nameInput, 'name-error');
+            clearError(emailInput, 'email-error');
+            clearError(phoneInput, 'phone-error');
+            clearError(messageInput, 'message-error');
+            feedbackBanner.style.display = 'none';
+        }
+
+        // Real-time listener to clear errors when user types in other fields
+        [nameInput, emailInput, phoneInput].forEach(field => {
+            field.addEventListener('input', () => {
+                const errorSpanId = field.id + '-error';
+                clearError(field, errorSpanId);
             });
+        });
+
+        // Form Submit Handler
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default submission to validate via JS
+            clearAllErrors();
+
+            let isValid = true;
+
+            // Name Validation
+            const nameValue = nameInput.value.trim();
+            if (nameValue === '') {
+                showError(nameInput, 'name-error', 'Please enter your name.');
+                isValid = false;
+            } else if (nameValue.length < 2) {
+                showError(nameInput, 'name-error', 'Name must be at least 2 characters long.');
+                isValid = false;
+            }
+
+            // Email Validation
+            const emailValue = emailInput.value.trim();
+            if (emailValue === '') {
+                showError(emailInput, 'email-error', 'Please enter your email address.');
+                isValid = false;
+            } else if (!isValidEmail(emailValue)) {
+                showError(emailInput, 'email-error', 'Please enter a valid email address (e.g. name@domain.com).');
+                isValid = false;
+            }
+
+            // Phone Validation
+            const phoneValue = phoneInput.value.trim();
+            if (phoneValue === '') {
+                showError(phoneInput, 'phone-error', 'Please enter your phone number.');
+                isValid = false;
+            } else if (!isValidPhone(phoneValue)) {
+                showError(phoneInput, 'phone-error', 'Please enter a valid phone number (at least 10 digits).');
+                isValid = false;
+            }
+
+            // Message Validation & Word Limit Check
+            const messageValue = messageInput.value.trim();
+            const wordCount = countWords(messageValue);
+
+            if (messageValue === '') {
+                showError(messageInput, 'message-error', 'Please enter your message.');
+                isValid = false;
+            } else if (wordCount < 10) {
+                showError(messageInput, 'message-error', 'Message must be at least 10 words long.');
+                isValid = false;
+            } else if (wordCount > MAX_WORDS) {
+                showError(messageInput, 'message-error', `Message cannot exceed ${MAX_WORDS} words (Currently ${wordCount} words).`);
+                isValid = false;
+            }
+
+            // Successful Submission Handling
+            if (isValid) {
+                feedbackBanner.textContent = 'Thank you! Your message has been sent successfully.';
+                feedbackBanner.className = 'feedback-banner success';
+                feedbackBanner.style.display = 'block';
+
+                contactForm.reset(); // Clear form fields
+                wordCounter.textContent = `Words: 0 / ${MAX_WORDS}`; // Reset counter display
+            }
+        });
+
+        // Reset/Cancel Button Handling
+        resetBtn.addEventListener('click', () => {
+            clearAllErrors();
+            wordCounter.textContent = `Words: 0 / ${MAX_WORDS}`;
+            wordCounter.classList.remove('limit-reached');
         });
     </script>
 </body>
