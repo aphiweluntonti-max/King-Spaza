@@ -21,6 +21,7 @@
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             padding: 10px 12px;
             font-size: 1rem;
@@ -28,10 +29,12 @@
             border-radius: 6px;
             outline: none;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
         }
 
         /* Error state styling */
         .form-group input.error-border,
+        .form-group select.error-border,
         .form-group textarea.error-border {
             border-color: #d32f2f;
             background-color: #ffebee;
@@ -195,12 +198,12 @@
             
             <!-- Google Map iframe -->
             <div style="text-align: center;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3315.0040324615834!2d25.58627317571087!3d-33.81220901613015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e7b2a12f580cf5f%3A0xc77da77d7f94f8f8!2sKING'S%20SPAZA!5e0!3m2!1sen!2sza!4v1786674746962!5m2!1sen!2sza" width="100%" height="450" style="border:0; max-width:800px; margin:auto;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3315.0040324615834!2d25.58627317571087!3d-33.81220901613015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e7b2a12f580cf5f%3A0xc77da77d7f94f8f8!2sKING&#39;S%20SPAZA!5e0!3m2!1sen!2sza!4v1786674746962!5m2!1sen!2sza" width="100%" height="450" style="border:0; max-width:800px; margin:auto;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
             <br><hr>
         </section>
 
-        <!-- Contact Form with 250-Word Limit Validation -->
+        <!-- Contact Form -->
         <section class="contact-form-section" style="max-width: 500px; margin: auto; padding: 0 20px;">
             <h1>Send us a Message</h1><hr><br>
 
@@ -222,9 +225,20 @@
 
                 <div class="form-group">
                     <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" placeholder="e.g., 27831234567" maxlength="12" pattern="\d{12}">
-                    <small class="form-text" style="color: #666; font-size: 0.85rem; margin-top: 4px;">Enter exactly 12 digits (e.g., country code + number like 27831234567).</small>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., 0831234567">
+                    <small class="form-text" style="color: #666; font-size: 0.85rem; margin-top: 4px;">Enter exactly 10 digits (e.g., 0831234567).</small>
                     <span class="error-message" id="phone-error"></span>
+                </div>
+
+                <!-- Inquiry Topic Dropdown -->
+                <div class="form-group">
+                    <label for="inquiry-topic">Reason for Contacting us (Optional):</label>
+                    <select id="inquiry-topic" name="inquiry_topic">
+                        <option value="" selected>-- Select an option (Optional) --</option>
+                        <option value="About the products">About the products</option>
+                        <option value="The vendor">The vendor</option>
+                    </select>
+                    <span class="error-message" id="topic-error"></span>
                 </div>
 
                 <div class="form-group">
@@ -313,6 +327,7 @@
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
         const phoneInput = document.getElementById('phone');
+        const topicSelect = document.getElementById('inquiry-topic');
         const messageInput = document.getElementById('message');
         const wordCounter = document.getElementById('word-counter');
         const feedbackBanner = document.getElementById('feedback-banner');
@@ -326,14 +341,6 @@
             if (trimmed === '') return 0;
             return trimmed.split(/\s+/).length;
         }
-
-        // Real-time phone restriction (numbers only, max 12 digits)
-        phoneInput.addEventListener('input', function () {
-            this.value = this.value.replace(/\D/g, '');
-            if (this.value.length > 12) {
-                this.value = this.value.slice(0, 12);
-            }
-        });
 
         // Real-time word counter listener
         messageInput.addEventListener('input', function () {
@@ -372,14 +379,19 @@
             clearError(nameInput, 'name-error');
             clearError(emailInput, 'email-error');
             clearError(phoneInput, 'phone-error');
+            clearError(topicSelect, 'topic-error');
             clearError(messageInput, 'message-error');
             feedbackBanner.style.display = 'none';
         }
 
-        // Real-time listener to clear errors when user types in other fields
-        [nameInput, emailInput, phoneInput].forEach(field => {
+        // Real-time listener to clear errors when user types in input fields
+        [nameInput, emailInput, phoneInput, topicSelect].forEach(field => {
             field.addEventListener('input', () => {
-                const errorSpanId = field.id + '-error';
+                const errorSpanId = field.id === 'inquiry-topic' ? 'topic-error' : field.id + '-error';
+                clearError(field, errorSpanId);
+            });
+            field.addEventListener('change', () => {
+                const errorSpanId = field.id === 'inquiry-topic' ? 'topic-error' : field.id + '-error';
                 clearError(field, errorSpanId);
             });
         });
@@ -411,13 +423,14 @@
                 isValid = false;
             }
 
-            // Phone Validation (Strict 12 digits)
+            // Phone Validation (Required, exactly 10 digits)
             const phoneValue = phoneInput.value.trim();
+            const phoneRegex = /^\d{10}$/;
             if (phoneValue === '') {
                 showError(phoneInput, 'phone-error', 'Please enter your phone number.');
                 isValid = false;
-            } else if (phoneValue.length !== 12) {
-                showError(phoneInput, 'phone-error', 'Phone number must be exactly 12 digits long.');
+            } else if (!phoneRegex.test(phoneValue)) {
+                showError(phoneInput, 'phone-error', 'Phone number must be exactly 10 digits (e.g. 0831234567).');
                 isValid = false;
             }
 
@@ -427,9 +440,6 @@
 
             if (messageValue === '') {
                 showError(messageInput, 'message-error', 'Please enter your message.');
-                isValid = false;
-            } else if (wordCount < 10) {
-                showError(messageInput, 'message-error', 'Message must be at least 10 words long.');
                 isValid = false;
             } else if (wordCount > MAX_WORDS) {
                 showError(messageInput, 'message-error', `Message cannot exceed ${MAX_WORDS} words (Currently ${wordCount} words).`);
@@ -444,11 +454,13 @@
 
                 // Construct mailto parameters
                 const recipient = "kingspaza@gmail.com";
-                const subject = encodeURIComponent("Website Contact Inquiry from " + nameValue);
+                const topicValue = topicSelect.value !== "" ? topicSelect.value : "General Inquiry";
+                const subject = encodeURIComponent("Website Contact Inquiry (" + topicValue + ") from " + nameValue);
                 const body = encodeURIComponent(
                     `Name: ${nameValue}\n` +
                     `Email: ${emailValue}\n` +
-                    `Phone: ${phoneValue}\n\n` +
+                    `Phone: ${phoneValue}\n` +
+                    `Reason for Contacting: ${topicValue}\n\n` +
                     `Message:\n${messageValue}`
                 );
 
